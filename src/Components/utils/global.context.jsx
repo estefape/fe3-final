@@ -11,6 +11,7 @@ export const ContextProvider = ({ children }) => {
   const [favoritos, setFavoritos] = useState(initialState.favoritos)
 
   const data = useMemo(() => {
+    
     const getDentists = async () => {
       const dataFetch = await fetch("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
@@ -18,8 +19,21 @@ export const ContextProvider = ({ children }) => {
         })
       return dataFetch
     }
-    return { getDentists, theme, favoritos, setTheme, setFavoritos }
+
+    const getFavs = () => {
+      const favs = localStorage.getItem('favoritesDentists');
+      let favoritos = {}
+      if (favs) {
+        favoritos = JSON.parse(favs)
+      }
+
+      return favoritos
+    }
+
+
+    return { getDentists, getFavs, theme, favoritos, setTheme, setFavoritos }
   }, [theme, favoritos])
+  
 
   return (
     <ContextGlobal.Provider value={{ ...data }}>
