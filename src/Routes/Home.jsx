@@ -7,7 +7,7 @@ import { ContextGlobal } from "../Components/utils/global.context";
 const Home = () => {
 
   const [dentist, setDentist] = useState([])
-  const { getFavs } = useContext(ContextGlobal)
+  const { getFavs, state } = useContext(ContextGlobal)
 
   const getDentists = async () => {
     const data = await fetch("https://jsonplaceholder.typicode.com/users")
@@ -24,9 +24,9 @@ const Home = () => {
   }, [])
 
   return (
-    <main className="" >
+    <main className={state.theme}>
       <h1>Home</h1>
-      <div className='card-grid'>
+      <div className={`card-grid ${state.theme}`}>
         {/* Aqui deberias renderizar las cards */}
         {dentist.map((dentist) => {
           return (<Card key={dentist.id} name={dentist.name} id={dentist.id} username={dentist.username} isFav={ dentist.id in favoritos } />)

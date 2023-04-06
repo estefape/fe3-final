@@ -7,13 +7,13 @@ import { ContextGlobal } from "../Components/utils/global.context";
 
 const Favs = () => {
 
-  const { getFavs } = useContext(ContextGlobal)
+  const { getFavs, state } = useContext(ContextGlobal)
   const favoritos = getFavs()
 
   return (
-    <>
-      <h1>Dentists Favs</h1>
-      <div className="card-grid">
+    <main className={state.theme}>
+      <h1>Dentista Favorito</h1>
+      <div className={`card-grid ${state.theme}`}>
         {/* este componente debe consumir los destacados del localStorage */}
         {/* Deberan renderizar una Card por cada uno de ellos */}
 
@@ -30,7 +30,7 @@ const Favs = () => {
           )
         })}
       </div>
-    </>
+    </main>
   );
 };
 
