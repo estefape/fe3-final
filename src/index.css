@@ -1,17 +1,25 @@
 body {
   margin: 0;
+  position: relative;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 3em;
+  min-height: 100vh;
+}
+
+body.dark {
+  background-color: #444;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.favButton{
+
+.favButton {
   background-color: rgba(136, 136, 136, 0.116);
   padding: 10px;
   border: none;
@@ -19,58 +27,90 @@ code {
   cursor: pointer;
 }
 
-h1{
+h1 {
   text-align: center;
+  margin: 0;
+  padding: 20px 0;
 }
 
-nav{
+nav {
   display: flex;
-  width: 80vw;
-  justify-content: flex-start;
-  padding: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#ADD8E6 ;
+  height: 100px;
+  padding: 0 40px;
 }
 
-a{
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+}
+
+.logo img {
+  margin-right: 10px
+}
+
+a {
   color: #000;
   text-decoration: none;
   margin: 5px;
   cursor: pointer;
 }
-a:hover{
+
+a:hover {
   color: rgb(136, 136, 136);
-} 
+}
 
 footer {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   text-align: center;
-  padding: 2rem;
-  position: relative;
+  background-color: #ADD8E6;
+  position:absolute;
+  width: 100%;
+  padding: 2em;
   bottom: 0;
-  width: 90%;
   height: 40px;
-  margin-top: 2rem;
 }
 
-footer > img{
+footer>img {
   width: 200px;
-  margin: 0;
+  margin-right: 600px;
+  filter: invert(0);
+  
 }
-footer > p{
-  margin: 0;
+
+footer>p {
+  margin-left: 100px;
   padding-top: 0.7rem;
 }
 
-form{
+.icons {
+  margin: 20px;
+  width: 25px;
+  filter: brightness(0);
+}
+
+form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   width: 300px;
-  height: 100px;
   margin: 0 auto;
 }
 
-.card{
+form label {
+  margin-bottom: 20px
+}
+
+input {
+  width: 290px;
+  height: 25px;
+}
+
+.card {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -80,11 +120,11 @@ form{
   border: 0.5px solid rgb(136, 136, 136);
 }
 
-.card:hover{
+.card:hover {
   border: 0.5px solid rgb(206, 217, 142);
 }
 
-.card-grid{
+.card-grid {
   display: flex;
   justify-content: space-evenly;
   gap: 1rem;
@@ -95,15 +135,16 @@ form{
 }
 
 table {
- border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    display: table;
-    border: 1px solid #ccc;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  display: table;
+  border: 1px solid #ccc;
 
 }
 
-td, th {
+td,
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
@@ -113,10 +154,148 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-.dark{
-  background-color: #12121296;
+.dark {
+  background-color: #000;
   color: white;
 }
-.dark > a {
+
+.dark .icons {
+  filter: brightness(1);
+}
+
+footer.dark > img {
+  filter:invert(1)
+}
+
+
+main {
+  padding-bottom: 230px;
+}
+
+main.dark,
+.card-grid.dark {
+  background: #444;
+}
+
+.dark a {
   color: white;
+}
+
+.dark .favButton {
+  background-color: #FFF;
+}
+
+.dark footer {
+  background-color: #000;
+}
+
+.dark,
+.light {
+  transition: background 0.2s linear;
+}
+
+h2 p {
+  text-align: center;
+}
+
+.like-button {
+  display: inline-block;
+  position: relative;
+  font-size: 10px;
+  cursor: pointer;
+  border: none
+}
+
+.like-button::before {
+  font-size: 3em;
+  color: #000;
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.like-button::after {
+  font-size: 3em;
+  color: #ff3252;
+  content: "♥";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s;
+}
+
+.like-button.liked::after {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.checkbox {
+  position: absolute;
+  width: 50px;
+  opacity: 0;
+}
+
+.label {
+  width: 38px;
+  height: 14px;
+  background-color: #111;
+  display: flex;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+/*  target the elemenent after the label*/
+.checkbox:checked+.label .ball {
+  transform: translateX(24px);
+}
+
+.fa-moon {
+  color: pink;
+}
+
+.fa-sun {
+  color: yellow;
+}
+
+.theme-switcher {
+  display: flex;
+  justify-content: end;
+  top: -2px;
+  position: relative;
+}
+
+.nav-links {
+  float: left;
+  margin-right: 30px
+}
+
+.error, .success {
+  padding: 10px;
+}
+
+.error {
+  background-color: #fcb4b4;
+  color: #800
+}
+
+.success {
+  background-color: #b0ffb0;
+  color: #060
 }
